@@ -1,0 +1,35 @@
+# Reflection — Sticky Notes App
+
+## Q1 — Reactivity
+
+When you type inside the textarea, the character counter updates automatically. This happens because the textarea is connected to `stickie.text` using `v-model`. When the text changes, Vue updates the data right away. Since the counter uses that same data, it updates on its own without needing extra code.
+
+
+---
+
+## Q2 — Deep Watch
+
+We use `deep: true` so Vue watches inside the `stickies` array. Without it, Vue would only notice when a note is added or deleted. It would not notice when the text inside a note changes. So if `deep: true` was removed, typing inside a note would stop saving automatically.
+
+
+---
+
+## Q3 — localStorage
+
+1. localStorage stores everything as text (strings).
+2. We use `JSON.stringify()` because our notes are stored as an array of objects, and they need to be turned into a string before saving.
+3. If we forgot `JSON.parse()` when loading, we would get a string instead of an array, and the app would not work properly.
+
+
+---
+
+## Q4 — Delete Logic
+
+The `.filter()` method creates a new array without the note that matches the id. We assign that new array back to `stickies` so Vue updates the screen.We use `!==` because we want to keep every note except the one being deleted.
+
+
+---
+
+## Q5 — Architecture Decision
+
+Saving is in its own method (`saveToStorage`) to keep the code organized. The watcher only checks for changes, and the save method handles storing the data. This makes the code easier to read and easier to change later if needed.
