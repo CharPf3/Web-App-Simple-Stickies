@@ -7,30 +7,20 @@ Vue.createApp({
     },
 
     mounted() {
-        // ================================
-     // COMMIT 2 — Render Notes ONLY
-        // ================================
-        //
-        // For Commit 2:
-        // - DO NOT use localStorage yet.
-        // - Temporarily hard-code TWO example notes here
-        //   so that rendering, v-for, v-model and the
-        //   character counter can be tested.
-        //
-        // Example structure:
-        //
-        // this.stickies = [
-        //   { id: 1, text: "Test note 1" },
-        //   { id: 2, text: "Another note" }
-        // ];
-        //
-        // In Commit 3:
-        // - REMOVE these hard-coded notes.
-        // - DO NOT keep them in the final version.
-        //
-        // In Commit 4:
-        // - Replace this with a call to loadFromStorage().
-    },
+    // COMMIT 2 — Hard-coded notes for rendering test only
+
+    this.stickies = [
+        {
+            id: 1,
+            text: "Test note 1"
+        },
+        {
+            id: 2,
+            text: "Another note"
+        }
+    ];
+},
+       
 
     methods: {
 
