@@ -1,51 +1,86 @@
-# Reflection — Sticky Notes App
+PROMPT:
+app.js says read only how can I change that
 
-## Q1 — Reactivity
+RESPONSE:
+Explained that the file was likely opened in Preview mode in Codespaces and needed to be reopened normally instead of preview.
 
-When you type inside the textarea, the character counter updates automatically.
-
-This happens because the textarea is connected to `stickie.text` using `v-model`. When the text changes, Vue updates the data right away. Since the counter uses that same data, it updates on its own without needing extra code.
-
-
----
-
-## Q2 — Deep Watch
-
-We use `deep: true` so Vue watches inside the `stickies` array.
-
-Without it, Vue would only notice when a note is added or deleted. It would not notice when the text inside a note changes.
-
-So if `deep: true` was removed, typing inside a note would stop saving automatically.
+WHAT I USED / CHANGED:
+Closed the preview tab and reopened app.js so I could edit it.
 
 
----
-
-## Q3 — localStorage
-
-1. localStorage stores everything as text (strings).
-
-2. We use `JSON.stringify()` because our notes are stored as an array of objects, and they need to be turned into a string before saving.
-
-3. If we forgot `JSON.parse()` when loading, we would get a string instead of an array, and the app would not work properly.
+----------------------------------------
 
 
----
+PROMPT:
+when can I uncomment my mounted function
 
-## Q4 — Delete Logic
+RESPONSE:
+Explained that the hard-coded notes were only for Commit 2 and that for Commit 4 mounted() should call loadFromStorage() instead.
 
-The `.filter()` method creates a new array without the note that matches the id.
-
-We assign that new array back to `stickies` so Vue updates the screen.
-
-We use `!==` because we want to keep every note except the one being deleted.
+WHAT I USED / CHANGED:
+Removed the hard-coded notes and updated mounted() to call this.loadFromStorage().
 
 
----
+----------------------------------------
 
-## Q5 — Architecture Decision
 
-Saving is in its own method (`saveToStorage`) to keep the code organized.
+PROMPT:
+what does deep true actually do
 
-The watcher only checks for changes, and the save method handles storing the data.
+RESPONSE:
+Explained that deep: true allows Vue to detect changes inside objects in the stickies array, like editing stickie.text, not just when the whole array changes.
 
-This makes the code easier to read and easier to change later if needed.
+WHAT I USED / CHANGED:
+Kept deep: true in the watcher so typing inside notes triggers saving.
+
+
+----------------------------------------
+
+
+PROMPT:
+how do I run it
+
+RESPONSE:
+Suggested running a simple server in Codespaces and opening the forwarded port to view the app in a browser.
+
+WHAT I USED / CHANGED:
+Started a simple server and confirmed the app was running.
+
+
+----------------------------------------
+
+
+PROMPT:
+so what you asking is if I refresh the app all the sticky notes stay the same
+
+RESPONSE:
+Explained that if localStorage was implemented correctly, refreshing should not delete the notes.
+
+WHAT I USED / CHANGED:
+Tested refresh behavior to confirm persistence was working.
+
+
+----------------------------------------
+
+
+PROMPT:
+how should I structure the addStickie function so it follows the instructions and works with v-for
+
+RESPONSE:
+Explained that each note should be an object with an id and text property, and that a unique id should be generated before pushing it into the stickies array.
+
+WHAT I USED / CHANGED:
+Created new notes in the format { id: newId, text: "" } and pushed them into the stickies array.
+
+
+----------------------------------------
+
+
+PROMPT:
+how do I make sure deleting a note updates the screen right away
+
+RESPONSE:
+Explained that using .filter() and reassigning the result back to this.stickies creates a new array, which triggers Vue to re-render the list.
+
+WHAT I USED / CHANGED:
+Used this.stickies = this.stickies.filter(...) instead of modifying the array directly.
