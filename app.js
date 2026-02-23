@@ -12,10 +12,6 @@ Vue.createApp({
 
     methods: {
 
-        // ================================
-        // COMMIT 3 — Add & Delete
-        // ================================
-
         addStickie() {
             let newId;
 
@@ -52,16 +48,14 @@ Vue.createApp({
             }
         },
 
-        // ================================
-        // COMMIT 5 — Clear All
-        // ================================
 
         clearAll() {
-            // TODO (Commit 5):
-            // 1. Use confirm("Delete all notes?")
-            // 2. If confirmed:
-            //    - Clear the stickies array
-            //    - Remove the localStorage item using this.storageKey
+            const confirmed = confirm("Delete all notes?");
+
+            if (confirmed) {
+                this.stickies = [];
+                localStorage.removeItem(this.storageKey);
+            }
         },
 
         // ================================
