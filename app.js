@@ -7,20 +7,8 @@ Vue.createApp({
     },
 
     mounted() {
-    // COMMIT 2 — Hard-coded notes for rendering test only
-
-    //his.stickies = [
-        //{
-            //id: 1,
-            //text: "Test note 1"
-        //},
-        //{
-            //id: 2,
-            //text: "Another note"
-        //}
-    //];
-},
-       
+    this.loadFromStorage();
+    },   
 
     methods: {
 
